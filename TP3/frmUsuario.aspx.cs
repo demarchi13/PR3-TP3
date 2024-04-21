@@ -22,12 +22,13 @@ namespace TP3
         public void GuardarLocalidad()
         {
             //PUNTO 4.1
-            string localidad = txtLocalidad.Text.Trim(); //Guarda el nombre de la localidad
+            string localidad = txtLocalidad.Text.ToLower()Trim(); //Guarda el nombre de la localidad en minuscula y sin espacios
+            string auxLocalidad = txtLocalidad.Text.Trim();
             bool banderaLocalidad = false;
 
             foreach (ListItem item in ddlLocalidades.Items) //Recorre el dropdownlist localidades
             {
-                if (localidad == item.Text) //Si es true quiere decir que la localidad ya existe y cambia el valor de la bandera
+                if (localidad == item.Text.ToLower()) //Si es true quiere decir que la localidad ya existe y cambia el valor de la bandera
                 {
                     banderaLocalidad = true;
                     break;
@@ -40,7 +41,7 @@ namespace TP3
             //PUNTO 4.3 Crear el if y el else y sol agregar la localidad
             if (!banderaLocalidad) //Si no es verdadero quiere decir que la localidad no existe y procede a agregar la localidad
             {
-                ddlLocalidades.Items.Add(new ListItem(localidad)); //PUNTO 4.3 Agregar localidad
+                ddlLocalidades.Items.Add(new ListItem(auxLocalidad)); //PUNTO 4.3 Agregar localidad
                 lblLocalidadRepetida.ForeColor = System.Drawing.Color.Green; //PUNTO 4.2 Cambiar color al label
                 lblLocalidadRepetida.Text = "Localidad Agregada exitosamente"; //PUNTO 4.2 Agregar mensaje
             }
